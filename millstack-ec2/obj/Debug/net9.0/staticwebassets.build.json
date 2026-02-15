@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "qMmHf62qLyeIuY0blwAMn91PwRC9N07rUdygrGp+SQk=",
+  "Source": "millstack-ec2",
+  "BasePath": "_content/millstack-ec2",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

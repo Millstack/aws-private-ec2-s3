@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "dgSpecHash": "a03BsSgInCg=",
+  "success": true,
+  "projectFilePath": "D:\\Udemy\\millstack-ec2\\millstack-ec2\\millstack-ec2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\DELL\\.nuget\\packages\\awssdk.core\\4.0.3.12\\awssdk.core.4.0.3.12.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\awssdk.extensions.netcore.setup\\4.0.3.22\\awssdk.extensions.netcore.setup.4.0.3.22.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\awssdk.s3\\4.0.18.4\\awssdk.s3.4.0.18.4.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.3\\microsoft.aspnetcore.openapi.9.0.3.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\2.0.0\\microsoft.extensions.configuration.abstractions.2.0.0.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\2.0.0\\microsoft.extensions.logging.abstractions.2.0.0.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.primitives\\2.0.0\\microsoft.extensions.primitives.2.0.0.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.4.0\\system.runtime.compilerservices.unsafe.4.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}

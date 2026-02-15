@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\millstack-ec2.props" />
+</Project>

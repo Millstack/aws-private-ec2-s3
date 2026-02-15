@@ -1,0 +1,12 @@
+D:\Udemy\millstack-ec2\millstack-ec2\obj\Debug\net9.0\PubTmp\Out\millstack-ec2.exe
+D:\Udemy\millstack-ec2\millstack-ec2\obj\Debug\net9.0\PubTmp\Out\appsettings.Development.json
+D:\Udemy\millstack-ec2\millstack-ec2\obj\Debug\net9.0\PubTmp\Out\appsettings.json
+D:\Udemy\millstack-ec2\millstack-ec2\obj\Debug\net9.0\PubTmp\Out\millstack-ec2.dll
+D:\Udemy\millstack-ec2\millstack-ec2\obj\Debug\net9.0\PubTmp\Out\millstack-ec2.deps.json
+D:\Udemy\millstack-ec2\millstack-ec2\obj\Debug\net9.0\PubTmp\Out\millstack-ec2.runtimeconfig.json
+D:\Udemy\millstack-ec2\millstack-ec2\obj\Debug\net9.0\PubTmp\Out\millstack-ec2.pdb
+D:\Udemy\millstack-ec2\millstack-ec2\obj\Debug\net9.0\PubTmp\Out\AWSSDK.Core.dll
+D:\Udemy\millstack-ec2\millstack-ec2\obj\Debug\net9.0\PubTmp\Out\AWSSDK.Extensions.NETCore.Setup.dll
+D:\Udemy\millstack-ec2\millstack-ec2\obj\Debug\net9.0\PubTmp\Out\AWSSDK.S3.dll
+D:\Udemy\millstack-ec2\millstack-ec2\obj\Debug\net9.0\PubTmp\Out\Microsoft.AspNetCore.OpenApi.dll
+D:\Udemy\millstack-ec2\millstack-ec2\obj\Debug\net9.0\PubTmp\Out\Microsoft.OpenApi.dll
