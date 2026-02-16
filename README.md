@@ -18,6 +18,25 @@ This project showcases how to host applications in a `Private Subnet` (no public
 
 <br>
 
+## 🛡️ Security Groups Configuration
+
+### 1. Public Security Group (Management & Ingress)
+* Applied to the NAT Gateway or Public Instances
+* **Inbound Rules**:
+- **`SSH`** (22): Allowed for initial setup or administrative tasks
+- **`HTTP`** (80): Standard web traffic entry point
+* **Outbound Rules**:
+  - All Traffic: Permitted to allow the NAT Gateway to forward requests to the internet
+
+### 2. Private Security Group (Zero-Ingress)
+* Applied to the .NET API EC2 Instance
+* **Inbound Rules**:
+  - None: This instance is completely shielded from the internet. No public IP and no open ports
+* **Outbound Rules**:
+  - **`HTTPS`** (443): Required for the SSM Agent to "call home" to AWS Systems Manager and for the .NET API to reach S3/external APIs securely
+
+<br>
+
 ## 🔐 IAM Configuration
 
 To achieve this setup, specific granular permissions were implemented to follow the Principle of `Least Privilege`
@@ -35,7 +54,7 @@ To achieve this setup, specific granular permissions were implemented to follow 
       			"Effect": "Allow",
       			"Action": "ssm:StartSession",
       			"Resource": [
-      				"arn:aws:ec2:ap-south-1:147602583479:instance/i-0931f593fc99b7399",
+      				"arn:aws:ec2:ap-south-1:ACCOUNT_ID:instance/i-EC2_INSTANCE_ID",
       				"arn:aws:ssm:*:*:document/AWS-StartPortForwardingSession",
       				"arn:aws:ssm:*:*:document/AWS-StartSSHSession"
       			]
@@ -92,12 +111,17 @@ To achieve this setup, specific granular permissions were implemented to follow 
 ### 2. Deploy .Net Web API project to private EC2 instance
 * using scp over SSM command
   ```bash
-  scp -i key-File-Name.pem -o \
-    "ProxyCommand=aws ssm start-session \
-    --target i-0931f593fc99b7399 \
-    --document-name AWS-StartSSHSession \
-    --parameters portNumber=%p" \
-    -r ./log-ec2-publish ubuntu@i-0931f593fc99b7399:/home/ubuntu/millstack-webapi
+
+  # for linix-bash : \
+  # for windows command prompt: ^
+  # for windows powershell: `
+  
+  scp -i key-File-Name.pem -o ^
+    "ProxyCommand=aws ssm start-session ^
+    --target i-EC2_INSTANCE_ID ^
+    --document-name AWS-StartSSHSession ^
+    --parameters portNumber=%p" ^
+    -r ./log-ec2-publish ubuntu@i-EC2_INSTANCE_ID:/home/ubuntu/millstack-webapi
   ```
 
 ### 3. Start the .NET API
@@ -109,9 +133,9 @@ dotnet millstack-ec2.dll --urls "http://*:7080;"
 ### 4. Creating the Secure SSM Tunnel
 Open a terminal on your local machine and run the following command to map your local port eg: `9090` to the EC2's port `7080` (running API port)
 ```bash
-aws ssm start-session `
-    --target i-EC2-Instance-ID `
-    --document-name AWS-StartPortForwardingSession `
+aws ssm start-session ^
+    --target i-EC2_INSTANCE_ID ^
+    --document-name AWS-StartPortForwardingSession ^
     --parameters "{\"portNumber\":[\"7080\"],\"localPortNumber\":[\"9090\"]}"
 ```
 
@@ -131,23 +155,14 @@ Now that the tunnel is "Waiting for connections," open Postman and send a reques
 
 <br>
 
-## ⚠️ Cost Optimization Note
-In this lab environment, the `NAT Gateway` + `Elastic IP` was used to download the `.NET 9 runtime` and `OS updates`. 
-To minimize costs, the NAT Gateway can be deleted & Elastic IP can be released after the environment is provisioned, 
-and established connectivity is now used for the logging API
+## ⚠️ Cost Optimization
+* **Provisioning**: The `NAT Gateway` and `Elastic IP` were utilized only during the setup phase to download the
+  `.NET 9 runtime` and critical `OS updates`
+* **Verification**: The `SSM Port Forwarding` tunnel was used to securely bridge a local Postman client to the private API for testing.
+  This required an active outbound path (NAT) for the SSM Agent to maintain its connection with AWS
+* **Production State**: To eliminate hourly costs, the NAT Gateway was deleted post-provisioning.
+  The application continues to function by utilizing the free S3 Gateway Endpoint, 
+  which allows the logging API to communicate with S3 privately without requiring a NAT Gateway
 
 
 
-### public security group
-* inbound rules:
-  1. SSH 22
-  2. HTTP 80
-* outbound rules: all
-
-### private security group
-* inbound rules: none
-* outbound rules:
-    1. HTTPS 443
-
-
- ## 
